@@ -1,0 +1,32 @@
+.card-container__img-container {
+    width: 272px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.film-img {
+    cursor: pointer;
+}
+
+.card-container__img-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.film-name {
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card-container__img-container:hover {
+    width: 280px;
+    height: 160px;
+
+}

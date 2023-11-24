@@ -1,0 +1,45 @@
+.container {
+    background-color: rgba(17, 24, 39);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin: 0px auto;
+    color: red;
+    padding: 24px 0px;
+    align-items: center;
+    padding: 24px;
+}
+
+.navbar__navbar-right {
+    display: flex;
+    column-gap: 12px;
+}
+
+.navbar__navbar-middle {
+    width: 19%;
+    ;
+}
+
+
+/*********************************************/
+.navbar__navbar-middle__search {
+    padding: 6px 6px;
+    width: 100%
+}
+
+.navbar__navbar-left__logo {
+    color: red;
+}
+
+.navbar__navbar-middle {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.search-icon {
+    font-size: 22px;
+}
