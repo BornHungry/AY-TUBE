@@ -5,7 +5,6 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    color: white;
     margin: 0px auto;
     color: red;
     padding: 24px 0px;
@@ -16,17 +15,20 @@
 .navbar__navbar-right {
     display: flex;
     column-gap: 12px;
+    align-items: center;
 }
 
 .navbar__navbar-middle {
-    width: 19%;
-    ;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
 }
 
 
 /*********************************************/
 .navbar__navbar-middle__search {
-    padding: 6px 6px;
+    padding: 8px 6px;
     width: 100%
 }
 
@@ -34,12 +36,39 @@
     color: red;
 }
 
-.navbar__navbar-middle {
-    display: flex;
-    align-items: center;
-    column-gap: 8px;
-}
 
 .search-icon {
     font-size: 22px;
+}
+
+.acitve {
+    color: red;
+    text-decoration: none;
+    padding: 0px;
+}
+
+.deactive {
+
+    color: white;
+    text-decoration: none;
+}
+
+.button-active {
+    background-color: red;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    border: none;
+}
+
+.button-deactive {
+    background-color: rgba(17, 24, 39);
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px 16px;
+    border: 2px solid white;
+    color: white;
 }

@@ -8,11 +8,13 @@ body {
   color: rgba(255, 255, 255, 0.747);
 }
 
-.App {
-  width: 95%;
-  margin: 0px auto;
-}
+
 
 .icon-item {
   font-size: 36px;
+}
+
+.input-block {
+  padding: 10px 6px;
+  width: 100%
 }

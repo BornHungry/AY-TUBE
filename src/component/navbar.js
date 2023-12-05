@@ -1,27 +1,56 @@
 import React from "react";
 import "../css/navbar.css";
-import Button from "../buttons/button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-function Navbar() {
+import { NavLink } from "react-router-dom";
+import { MyAuthContext } from "./context/ContextAuth";
+import { useContext } from "react";
+function Navbar({ login }) {
+  const { logoutFunc } = useContext(MyAuthContext);
   return (
     <div className="container">
       <div className="navbar">
         <div className="navbar__navbar-left">
           <h2 className="navbar__navbar-left__logo">AY TUBE</h2>
         </div>
-        <div className="navbar__navbar-middle">
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
-          <input
-            className="navbar__navbar-middle__search"
-            type="text"
-            name="text"
-          />
-        </div>
+
         <div className="navbar__navbar-right">
-          <p className="navbar__navbar-right__item">Home</p>
-          <p className="navbar__navbar-right__item">Favorites</p>
-          <Button />
+          <NavLink
+            className={({ isActive }) => (isActive ? "acitve" : "deactive")}
+            to={"/home"}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? "acitve" : "deactive")}
+            to={"/favorites"}
+          >
+            Favorites
+          </NavLink>
+          {login ? (
+            <NavLink to={"/"}>
+              <button onClick={logoutFunc} className="button">
+                Sign Out
+              </button>
+            </NavLink>
+          ) : (
+            <>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "button-active" : "button-deactive"
+                }
+                to={"/"}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "button-active" : "button-deactive"
+                }
+                to={"/signin"}
+              >
+                Sign in
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </div>
