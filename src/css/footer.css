@@ -7,10 +7,11 @@
 }
 
 .footer {
-    margin: 26px;
+    margin-top: 64px;
     width: 100%;
     height: 40px;
     text-align: center;
+
 }
 
 .footer-text:hover {

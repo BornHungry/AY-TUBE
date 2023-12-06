@@ -15,7 +15,7 @@ const MyAuthProvider = ({ children }) => {
         return { user: action.user };
       case "LOGOUT":
         return {
-          user: null,
+          user: [],
         };
       default:
         return state;

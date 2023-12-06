@@ -4,6 +4,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { MyContext } from "./context/ContextProvider";
+import toast, { Toaster } from "react-hot-toast";
 export default function Cards({
   name,
   src,
@@ -11,12 +12,14 @@ export default function Cards({
   setModal,
   item,
   setModalData,
+  active,
 }) {
   const [isFavorites, setIsFavorites] = useState(false);
-  const { addItem, removeItem } = useContext(MyContext);
+  const { addItem } = useContext(MyContext);
 
   return (
     <div className="card-container" id="card-container">
+      <Toaster />
       <div
         className="card-container__img-container"
         onClick={() => {
@@ -35,14 +38,15 @@ export default function Cards({
           {name} {originalName}
         </h2>
         <FontAwesomeIcon
-          style={{ color: isFavorites ? "red" : "" }}
+          style={{ color: active ? "red" : "" || isFavorites ? "red" : "" }}
           icon={faHeart}
           onClick={() => {
-            setIsFavorites(!isFavorites);
-            if (isFavorites) {
-              removeItem(item.id);
-            } else {
+            setIsFavorites(true);
+            if (!isFavorites) {
               addItem(item);
+              toast.success(
+                "Favorilerinize Eklendi! Kaldırmak için favoriler sekmesine gidin.."
+              );
             }
           }}
         />
