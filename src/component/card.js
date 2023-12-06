@@ -13,7 +13,8 @@ export default function Cards({
   setModalData,
 }) {
   const [isFavorites, setIsFavorites] = useState(false);
-  const { items, addItem, removeItem } = useContext(MyContext);
+  const { addItem, removeItem } = useContext(MyContext);
+
   return (
     <div className="card-container" id="card-container">
       <div

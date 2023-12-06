@@ -7,11 +7,11 @@ import MyProvider from "./component/context/ContextProvider";
 import MyAuthProvider from "./component/context/ContextAuth";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <MyProvider>
-    <MyAuthProvider>
+  <MyAuthProvider>
+    <MyProvider>
       <App />
-    </MyAuthProvider>
-  </MyProvider>
+    </MyProvider>
+  </MyAuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

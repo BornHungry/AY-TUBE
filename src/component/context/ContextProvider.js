@@ -1,63 +1,85 @@
-import React, { cloneElement, createContext, useReducer } from "react";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import React, { createContext, useContext, useReducer } from "react";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  where,
+} from "firebase/firestore";
 import { app } from "../FireBase";
+import { MyAuthContext } from "./ContextAuth";
+
 export const MyContext = createContext();
 const MyProvider = ({ children }) => {
   const db = getFirestore(app);
-  /** useReducer tanımlandı */
-
-  /**UseReducerin başlangıç değeri ayarlandı */
+  const { user } = useContext(MyAuthContext);
+  console.log("SELAM BEN DENEME", user);
   const reducerOriginValue = {
     items: [],
   };
-  /* useReducerin fonksiyonu tanımlandı */
   const reducer = (state, action) => {
     switch (action.type) {
-      /*Favori film ekleme fonksiyonu */
       case "ADD":
-        let getItem = [...state.items, action.favorites];
-        const postFavorites = async () => {
-          try {
-            const docRef = await addDoc(collection(db, "favorites"), getItem);
-            console.log("Document written with ID: ", docRef.id);
-            return docRef;
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-        };
+        const newItem = { ...action.favorites, userEmail: user.email };
+        addFavoriteToFirestore(newItem); // Firestore'a ekleme işlemi
+        return { items: [...state.items, newItem] };
 
-        return postFavorites;
-      /*favori filmi kaldırma fonksiyonu */
       case "REMOVE":
-        const putFavorites = async () => {
-          try {
-            const docRef = await addDoc(
-              cloneElement(db, "favorites"),
-              filtered
-            );
-            return docRef;
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-        };
-        const filtered = state.items.filter((item) => item.id !== action.id);
-        return putFavorites;
+        const idToRemove = action.id;
+        removeFavoriteFromFirestore(idToRemove); // Firestore'dan kaldırma işlemi
+        const filtered = state.items.filter((item) => item.id !== idToRemove);
+        return { items: filtered };
+
       case "GETITEM":
-        const favoritesFilm = async () => {
-          const querySnapshot = await getDocs(collection(db, "users"));
-          return querySnapshot;
-        };
-        return { items: favoritesFilm };
+        getFavoritesFromFirestore(); // Firestore'dan verileri çekme işlemi
+        return state;
 
       default:
         return state;
     }
   };
-  /*useRedcuer tanılaması */
+
+  const addFavoriteToFirestore = async (newItem) => {
+    try {
+      // Eklenen favori filmi veritabanına ekleyin
+      const docRef = await addDoc(collection(db, "favorites"), newItem);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
+  const removeFavoriteFromFirestore = async (idToRemove) => {
+    try {
+      const favoriteRef = doc(db, "favorites", idToRemove);
+      await deleteDoc(favoriteRef);
+      console.log("Document with ID: ", idToRemove, " successfully deleted");
+    } catch (e) {
+      console.error("Error deleting document: ", e);
+    }
+  };
+
+  const getFavoritesFromFirestore = async () => {
+    try {
+      // Favori filmleri veritabanından çekin
+      const querySnapshot = await getDocs(
+        collection(db, "favorites"),
+        where("userEmail", "==", user.email)
+      );
+      const items = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log("Favorites retrieved from Firestore: ", items);
+    } catch (e) {
+      console.error("Error getting documents: ", e);
+    }
+  };
+
   const [cartList, cartListActions] = useReducer(reducer, reducerOriginValue);
-  console.log(cartList.items);
-  /*Context API' ın value değeri */
+  console.log("CART LİST BURADAAAAA0", cartList);
   const FavoritesContext = {
     addItem: (favorites) => {
       cartListActions({ type: "ADD", favorites });
@@ -68,9 +90,12 @@ const MyProvider = ({ children }) => {
     getFireStore: () => {
       cartListActions({ type: "GETITEM" });
     },
+    cartList: cartList.items,
   };
+
   return (
     <MyContext.Provider value={FavoritesContext}>{children}</MyContext.Provider>
   );
 };
+
 export default MyProvider;

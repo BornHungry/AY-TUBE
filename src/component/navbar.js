@@ -3,8 +3,10 @@ import "../css/navbar.css";
 import { NavLink } from "react-router-dom";
 import { MyAuthContext } from "./context/ContextAuth";
 import { useContext } from "react";
+import { MyContext } from "./context/ContextProvider";
 function Navbar({ login }) {
   const { logoutFunc } = useContext(MyAuthContext);
+  const { getFireStore } = useContext(MyContext);
   return (
     <div className="container">
       <div className="navbar">
@@ -23,7 +25,7 @@ function Navbar({ login }) {
             className={({ isActive }) => (isActive ? "acitve" : "deactive")}
             to={"/favorites"}
           >
-            Favorites
+            <button>Favorites</button>
           </NavLink>
           {login ? (
             <NavLink to={"/"}>

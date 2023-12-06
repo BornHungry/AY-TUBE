@@ -4,7 +4,7 @@ export const MyAuthContext = createContext();
 
 const MyAuthProvider = ({ children }) => {
   const initialStateValue = {
-    user: null, // veya başka bir değer
+    user: null,
   };
 
   const reducer = (state, action) => {
@@ -15,7 +15,7 @@ const MyAuthProvider = ({ children }) => {
         return { user: action.user };
       case "LOGOUT":
         return {
-          user: null, // veya başka bir değer
+          user: null,
         };
       default:
         return state;

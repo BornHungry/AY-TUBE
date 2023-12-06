@@ -3,6 +3,7 @@ import Layouts from "../component/Layouts";
 import Discover from "../component/dicsover";
 import Header from "../headers/header";
 import "./Home.css";
+
 const HomePage = () => {
   return (
     <div>
