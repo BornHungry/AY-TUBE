@@ -81,7 +81,7 @@ function Modal({ modalData, setModal }) {
                             </p>
                             <p>
                               <strong>Score:{""} </strong>
-                              {modalData.vote_average}
+                              {modalData.vote_average.toFixed(1)}
                             </p>
                           </span>
                         </div>
