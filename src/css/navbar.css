@@ -53,6 +53,18 @@
     text-decoration: none;
 }
 
+.acitve-disclosure {
+    color: rgba(17, 24, 39);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0px;
+}
+
+.deactive-disclosure {
+    color: white;
+    text-decoration: none;
+}
+
 .button-active {
     background-color: red;
     padding: 8px 16px;
@@ -70,5 +82,25 @@
     text-align: center;
     padding: 8px 16px;
     border: 2px solid white;
+    color: white;
+}
+
+.button-active-disclosure {
+    background-color: rgba(17, 24, 39);
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    border: 2px solid white;
+}
+
+.button-deactive-disclosure {
+    background-color: rgba(17, 24, 39);
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px 16px;
+    border: none;
     color: white;
 }

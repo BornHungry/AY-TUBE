@@ -13,3 +13,17 @@
     width: 22%;
     row-gap: 15px;
 }
+
+@media screen and (max-width:320px) {
+    .login-form__container {
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+    .login-form__container {
+        width: 80%;
+    }
+
+}

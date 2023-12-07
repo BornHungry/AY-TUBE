@@ -1,9 +1,10 @@
 .button {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.829);
     color: white;
     border: none;
-    padding: 8px 16px;
+    margin-top: 12px;
     border-radius: 5px;
+    padding: 8px 16px;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 16px;
@@ -11,4 +12,15 @@
 
 .button:hover {
     background-color: rgba(255, 0, 0, 0.829);
+}
+
+@media screen and (max-width:320px) {
+    .login-form__container {
+        width: 80%;
+    }
+
+    .button {
+        width: 100%;
+    }
+
 }
