@@ -28,9 +28,12 @@ const SigninForm = () => {
       );
       const user = data.user;
       registerFunc(user);
-      toast.success("Success");
-
-      navigate("/");
+      if (user) {
+        const timeoutId = setTimeout(() => {
+          navigate("/");
+        }, 3000);
+        toast.success("Success");
+      }
     } catch (error) {
       toast.error(error.message);
     }

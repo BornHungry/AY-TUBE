@@ -17,15 +17,20 @@ function Navbar({ login }) {
         </div>
 
         <div className="navbar__navbar-right">
-          <Disclosure as="nav" style={{ backgroundColor: "#111827" }}>
+          <Disclosure
+            as="nav"
+            style={{
+              backgroundColor: "#111827",
+            }}
+          >
             {({ open }) => (
               <>
                 <div className="mx-auto mt-15 max-w-7xl px-2 sm:px-6 lg:px-8">
                   <div className="relative flex h-16 items-center justify-between">
                     <div className="flex items-center justify-end w-full">
                       {/* Mobile menu button*/}
-                      <Disclosure.Button className="sm:hidden relative inline-flex items-center justify-center rounded-md p-2 text-red-600 font-bold hover:text-red-600 focus:outline-none  focus:ring-red-600">
-                        <span className="absolute -inset-0.5" />
+                      <Disclosure.Button className="sm:hidden  inline-flex items-center justify-center rounded-md p-2 text-red-600 font-bold hover:text-red-600 focus:outline-none  focus:ring-red-600">
+                        <span className="-inset-0.5" />
                         <span className="sr-only">Open main menu</span>
                         {!open ? (
                           <Bars3Icon
@@ -62,10 +67,14 @@ function Navbar({ login }) {
                           <NavLink to={"/"}>
                             <button
                               onClick={logoutFunc}
-                              style={{ padding: "8px 16px" }}
-                              className="button"
+                              style={{
+                                padding: "8px 16px",
+                                backgroundColor: "red",
+                                margin: "0px",
+                              }}
+                              className="button-logout"
                             >
-                              SignOut
+                              Logout
                             </button>
                           </NavLink>
                         ) : (
@@ -127,8 +136,11 @@ function Navbar({ login }) {
                     {login ? (
                       <Disclosure.Button className="block">
                         <NavLink to={"/"}>
-                          <button onClick={logoutFunc} className="button">
-                            SignOut
+                          <button
+                            onClick={logoutFunc}
+                            className="button-logout"
+                          >
+                            Logout
                           </button>
                         </NavLink>
                       </Disclosure.Button>

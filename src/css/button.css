@@ -1,5 +1,5 @@
 .button {
-    background-color: rgba(255, 0, 0, 0.829);
+    background-color: red;
     color: white;
     border: none;
     margin-top: 12px;
@@ -8,6 +8,23 @@
     cursor: pointer;
     transition: all 0.3s;
     font-size: 16px;
+}
+
+.button-logout {
+    background-color: rgba(17, 24, 39);
+
+    color: white;
+    border: none;
+    margin-top: 12px;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.button-logout:hover {
+    background-color: rgba(255, 0, 0, 0.829);
 }
 
 .button:hover {
