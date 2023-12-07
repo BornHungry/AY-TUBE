@@ -12,6 +12,7 @@
     flex-direction: column;
     width: 22%;
     row-gap: 15px;
+    color: black;
 }
 
 @media screen and (max-width:320px) {
