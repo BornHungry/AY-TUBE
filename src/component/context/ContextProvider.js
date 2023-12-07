@@ -1,11 +1,16 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useCallback,
+} from "react";
 import {
   getFirestore,
   collection,
   addDoc,
   getDocs,
   deleteDoc,
-  doc,
 } from "firebase/firestore";
 import { app } from "../FireBase";
 import { MyAuthContext } from "./ContextAuth";
@@ -85,7 +90,7 @@ const MyProvider = ({ children }) => {
     }
   };
 
-  const getFavoritesFromFirestore = async () => {
+  const getFavoritesFromFirestore = useCallback(async () => {
     if (user) {
       try {
         const querySnapshot = await getDocs(collection(db, "favorites"));
@@ -102,7 +107,7 @@ const MyProvider = ({ children }) => {
         throw e; // Hata durumunda istisna fırlat
       }
     }
-  };
+  }, [user, db]);
 
   const [cartList, cartListDispatch] = useReducer(reducer, reducerOriginValue);
   useEffect(() => {
@@ -116,7 +121,7 @@ const MyProvider = ({ children }) => {
     };
 
     fetchData();
-  }, [user]); // user değiştiğinde fetchData fonksiyonunu tekrar çağır
+  }, [user, getFavoritesFromFirestore]); // user değiştiğinde fetchData fonksiyonunu tekrar çağır
 
   const FavoritesContext = {
     addItem: (favorites) => {
