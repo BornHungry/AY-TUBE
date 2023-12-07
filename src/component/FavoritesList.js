@@ -6,7 +6,6 @@ import { MyContext } from "./context/ContextProvider";
 import Modal from "./modal";
 import "../css/favoritesList.css";
 const FavoritesList = () => {
-  const [isFavorites, setIsFavorites] = useState(true);
   const [modalData, setModalData] = useState([]);
   const [modal, setModal] = useState(false);
   const { removeItem } = useContext(MyContext);
@@ -43,7 +42,6 @@ const FavoritesList = () => {
               <FontAwesomeIcon
                 style={{ color: "red" }}
                 onClick={() => {
-                  setIsFavorites(false);
                   removeItem(item.id);
                 }}
                 icon={faHeart}
