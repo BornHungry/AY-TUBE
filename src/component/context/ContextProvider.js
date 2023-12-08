@@ -20,7 +20,7 @@ const MyProvider = ({ children }) => {
   const db = getFirestore(app);
   const { user } = useContext(MyAuthContext);
   if (user) {
-    console.log("SELAM BEN DENEME", user.email);
+    console.log("SELAM BEN DENEME XXXXXXXXXXXXXXXXXXXXXXXXX", user.email);
   }
 
   const reducerOriginValue = {
@@ -33,7 +33,6 @@ const MyProvider = ({ children }) => {
         const newItem = {
           ...action.favorites,
           userEmail: user.email,
-          active: true,
         };
         addFavoriteToFirestore(newItem);
         return { items: [...state.items, newItem] };
@@ -58,8 +57,14 @@ const MyProvider = ({ children }) => {
   };
 
   const addFavoriteToFirestore = async (newItem) => {
+    const userFavoritesCollection = collection(
+      db,
+      "users",
+      user.email,
+      "favorites"
+    );
     try {
-      const docRef = await addDoc(collection(db, "favorites"), newItem);
+      const docRef = await addDoc(userFavoritesCollection, newItem);
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -67,9 +72,15 @@ const MyProvider = ({ children }) => {
   };
 
   const removeFavoriteFromFirestore = async (idToRemove) => {
+    const userFavoritesCollection = collection(
+      db,
+      "users",
+      user.email,
+      "favorites"
+    );
     try {
       // favorites koleksiyonundaki belgeler içinde idToRemove adlı alanı arayarak sorgu yapın
-      const querySnapshot = await getDocs(collection(db, "favorites"));
+      const querySnapshot = await getDocs(userFavoritesCollection);
 
       querySnapshot.forEach(async (doc) => {
         const data = doc.data();
@@ -92,8 +103,14 @@ const MyProvider = ({ children }) => {
 
   const getFavoritesFromFirestore = useCallback(async () => {
     if (user) {
+      const userFavoritesCollection = collection(
+        db,
+        "users",
+        user.email,
+        "favorites"
+      );
       try {
-        const querySnapshot = await getDocs(collection(db, "favorites"));
+        const querySnapshot = await getDocs(userFavoritesCollection);
 
         const items = querySnapshot.docs.map((doc) => ({
           id: doc.id,
