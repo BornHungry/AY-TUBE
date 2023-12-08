@@ -17,9 +17,9 @@ const FavoritesList = () => {
     (item) => item.userEmail === userEmail
   );
   return (
-    <div className="favoritesList">
-      {filteredFavorites &&
-        filteredFavorites.map((item, i) => (
+    <div className="favorites-ct">
+      <div className="favoritesList">
+        {filteredFavorites?.map((item, i) => (
           <div key={i} className="favorites" id="card-container">
             <div
               onClick={() => {
@@ -49,6 +49,7 @@ const FavoritesList = () => {
             </div>
           </div>
         ))}
+      </div>
       {modal && <Modal modalData={modalData} setModal={setModal} />}
     </div>
   );
