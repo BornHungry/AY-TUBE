@@ -25,7 +25,6 @@ const LoginForm = () => {
       );
       const user = data.user;
       loginFunc(user);
-      toast.success("Success");
       console.log(user);
       navigate("/home");
     } catch (error) {

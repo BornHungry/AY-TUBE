@@ -44,11 +44,9 @@
 .acitve {
     color: red;
     text-decoration: none;
-    padding: 0px;
 }
 
 .deactive {
-
     color: white;
     text-decoration: none;
 }

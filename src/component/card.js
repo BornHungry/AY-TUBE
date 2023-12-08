@@ -4,7 +4,6 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { MyContext } from "./context/ContextProvider";
-import toast, { Toaster } from "react-hot-toast";
 export default function Cards({
   name,
   src,
@@ -19,7 +18,6 @@ export default function Cards({
 
   return (
     <div className="card-container" id="card-container">
-      <Toaster />
       <div
         className="card-container__img-container"
         onClick={() => {
@@ -44,9 +42,6 @@ export default function Cards({
             setIsFavorites(true);
             if (!isFavorites) {
               addItem(item);
-              toast.success(
-                "Favorilerinize Eklendi! Kaldırmak için favoriler sekmesine gidin.."
-              );
             }
           }}
         />
