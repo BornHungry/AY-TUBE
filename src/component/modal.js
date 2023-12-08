@@ -32,7 +32,7 @@ function Modal({ modalData, setModal }) {
                                                   From: "opacity-100"
                                                   To: "opacity-0"
                                               --> */}
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-20 transition-opacity"></div>
 
             <div
               onClick={() => {
