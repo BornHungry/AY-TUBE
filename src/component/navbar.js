@@ -101,7 +101,6 @@ function Navbar({ login }) {
                   style={{
                     backgroundColor: "red",
                     width: "60%",
-                    height: "100vh",
                   }}
                   className="sm:hidden absolute top-25 right-0"
                 >
