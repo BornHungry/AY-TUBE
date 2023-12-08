@@ -100,19 +100,27 @@ function Navbar({ login }) {
                 <Disclosure.Panel
                   style={{
                     backgroundColor: "red",
-                    width: "50%",
+                    width: "40%",
                     height: "100vh",
                   }}
                   className="sm:hidden absolute top-25 right-0"
                 >
                   <div className="space-y-1 px-2 pb-5 pt-5 ">
                     <Disclosure.Button
-                      style={{ marginTop: "12px" }}
+                      style={{
+                        marginTop: "12px",
+                        backgroundColor: "rgba(17, 24, 39)",
+                        width: "100%",
+                        borderRadius: "5px",
+                        padding: "8px 16px",
+                      }}
                       className="block "
                     >
                       <NavLink
                         className={({ isActive }) =>
-                          isActive ? "acitve-disclosure" : "deactive-disclosure"
+                          isActive
+                            ? "button-active-disclosure"
+                            : "button-deactive-disclosure"
                         }
                         to={"/home"}
                       >
@@ -120,12 +128,20 @@ function Navbar({ login }) {
                       </NavLink>
                     </Disclosure.Button>
                     <Disclosure.Button
-                      style={{ marginTop: "12px" }}
+                      style={{
+                        marginTop: "22px",
+                        backgroundColor: "rgba(17, 24, 39)",
+                        width: "100%",
+                        borderRadius: "5px",
+                        padding: "8px 16px",
+                      }}
                       className="block"
                     >
                       <NavLink
                         className={({ isActive }) =>
-                          isActive ? "acitve-disclosure" : "deactive-disclosure"
+                          isActive
+                            ? "button-active-disclosure"
+                            : "button-deactive-disclosure"
                         }
                         to={"/favorites"}
                       >
@@ -133,20 +149,37 @@ function Navbar({ login }) {
                       </NavLink>
                     </Disclosure.Button>
                     {login ? (
-                      <Disclosure.Button className="block">
-                        <NavLink to={"/"}>
-                          <button
-                            onClick={logoutFunc}
-                            className="button-logout"
-                          >
-                            Logout
-                          </button>
+                      <Disclosure.Button
+                        style={{
+                          marginTop: "22px",
+                          backgroundColor: "rgba(17, 24, 39)",
+                          width: "100%",
+                          borderRadius: "5px",
+                          padding: "8px 16px",
+                        }}
+                        className="block"
+                      >
+                        <NavLink
+                          className={({ isActive }) =>
+                            isActive
+                              ? "button-active-disclosure"
+                              : "button-deactive-disclosure"
+                          }
+                          to={"/"}
+                        >
+                          <button onClick={logoutFunc}>Logout</button>
                         </NavLink>
                       </Disclosure.Button>
                     ) : (
                       <>
                         <Disclosure.Button
-                          style={{ marginTop: "22px" }}
+                          style={{
+                            marginTop: "22px",
+                            backgroundColor: "rgba(17, 24, 39)",
+                            width: "100%",
+                            borderRadius: "5px",
+                            padding: "8px 16px",
+                          }}
                           className="block "
                         >
                           <NavLink
@@ -160,7 +193,15 @@ function Navbar({ login }) {
                             Login
                           </NavLink>
                         </Disclosure.Button>
-                        <Disclosure.Button style={{ marginTop: "22px" }}>
+                        <Disclosure.Button
+                          style={{
+                            marginTop: "22px",
+                            backgroundColor: "rgba(17, 24, 39)",
+                            width: "100%",
+                            borderRadius: "5px",
+                            padding: "8px 16px",
+                          }}
+                        >
                           <NavLink
                             className={({ isActive }) =>
                               isActive
