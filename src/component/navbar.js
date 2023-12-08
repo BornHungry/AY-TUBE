@@ -100,7 +100,7 @@ function Navbar({ login }) {
                 <Disclosure.Panel
                   style={{
                     backgroundColor: "red",
-                    width: "40%",
+                    width: "60%",
                     height: "100vh",
                   }}
                   className="sm:hidden absolute top-25 right-0"
