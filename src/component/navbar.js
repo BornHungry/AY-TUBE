@@ -2,7 +2,7 @@ import React from "react";
 import "../css/navbar.css";
 import { NavLink } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { MyAuthContext } from "./context/ContextAuth";
 import { useContext } from "react";
 function Navbar({ login }) {
@@ -33,8 +33,8 @@ function Navbar({ login }) {
                         <span className="-inset-0.5" />
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon
-                          className={`block transition-all h-6 w-6 ${
-                            open ? "rotate-90" : ""
+                          className={`block transition-all h-6 w-6 ease-in-out duration-500 ${
+                            open ? "rotate-180 " : ""
                           }`}
                           aria-hidden="true"
                         />
