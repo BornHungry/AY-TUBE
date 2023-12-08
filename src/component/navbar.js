@@ -32,17 +32,12 @@ function Navbar({ login }) {
                       <Disclosure.Button className="sm:hidden  inline-flex items-center justify-center rounded-md p-2 text-red-600 font-bold hover:text-red-600 focus:outline-none  focus:ring-red-600">
                         <span className="-inset-0.5" />
                         <span className="sr-only">Open main menu</span>
-                        {!open ? (
-                          <Bars3Icon
-                            className="block h-6 w-6"
-                            aria-hidden="true"
-                          />
-                        ) : (
-                          <XMarkIcon
-                            className="block h-6 w-6"
-                            aria-hidden="true"
-                          />
-                        )}
+                        <Bars3Icon
+                          className={`block transition-all h-6 w-6 ${
+                            open ? "rotate-90" : ""
+                          }`}
+                          aria-hidden="true"
+                        />
                       </Disclosure.Button>
                     </div>
                     <div className="hidden sm:ml-6 sm:block">
@@ -103,8 +98,12 @@ function Navbar({ login }) {
                 </div>
 
                 <Disclosure.Panel
-                  style={{ backgroundColor: "red", width: "50%" }}
-                  className="sm:hidden absolute top-25 right-0 "
+                  style={{
+                    backgroundColor: "red",
+                    width: "50%",
+                    height: "100vh",
+                  }}
+                  className="sm:hidden absolute top-25 right-0"
                 >
                   <div className="space-y-1 px-2 pb-5 pt-5 ">
                     <Disclosure.Button
