@@ -8,7 +8,7 @@ import { useContext } from "react";
 function Navbar({ login }) {
   const { logoutFunc } = useContext(MyAuthContext);
   return (
-    <div className="container">
+    <div>
       <div className="navbar">
         <div className="navbar__navbar-left">
           <h2 className="navbar__navbar-left__logo text-3xl font-bold">
