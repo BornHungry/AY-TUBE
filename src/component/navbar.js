@@ -25,7 +25,7 @@ function Navbar({ login }) {
           >
             {({ open }) => (
               <>
-                <div className="mx-auto mt-15 max-w-7xl px-2 sm:px-6 lg:px-8">
+                <div>
                   <div className="relative flex h-16 items-center justify-between">
                     <div className="flex items-center justify-end w-full">
                       {/* Mobile menu button*/}
