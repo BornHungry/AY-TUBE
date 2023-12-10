@@ -14,7 +14,7 @@ export default function Cards({
   active,
 }) {
   const [isFavorites, setIsFavorites] = useState(false);
-  const { addItem } = useContext(MyContext);
+  const { addItem, removeItem } = useContext(MyContext);
 
   return (
     <div className="card-container" id="card-container">
@@ -40,8 +40,11 @@ export default function Cards({
           icon={faHeart}
           onClick={() => {
             setIsFavorites(true);
+            console.log("İTEM", item, "İTEM.İD", item.id);
             if (!isFavorites) {
               addItem(item);
+            } else {
+              removeItem(item.id);
             }
           }}
         />

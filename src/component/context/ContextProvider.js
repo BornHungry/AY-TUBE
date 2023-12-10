@@ -14,14 +14,10 @@ import {
 } from "firebase/firestore";
 import { app } from "../FireBase";
 import { MyAuthContext } from "./ContextAuth";
-
 export const MyContext = createContext();
 const MyProvider = ({ children }) => {
   const db = getFirestore(app);
   const { user } = useContext(MyAuthContext);
-  if (user) {
-    console.log("SELAM BEN DENEME XXXXXXXXXXXXXXXXXXXXXXXXX", user.email);
-  }
 
   const reducerOriginValue = {
     items: [],
@@ -34,8 +30,11 @@ const MyProvider = ({ children }) => {
           ...action.favorites,
           userEmail: user.email,
         };
-        addFavoriteToFirestore(newItem);
-        return { items: [...state.items, newItem] };
+        const idToAdd = action.favorites.id;
+        console.log("ACTİON İD BURDA", idToAdd);
+        addFavoriteToFirestore(newItem, idToAdd);
+        const xxx = state.items.some((item) => item.id === idToAdd);
+        return { items: xxx ? [...state.items] : [...state.items, newItem] };
 
       case "REMOVE":
         /** KALDIRMA İŞLEMİ TAM YAPILMIYOR ONU HALLET */
@@ -56,18 +55,29 @@ const MyProvider = ({ children }) => {
     }
   };
 
-  const addFavoriteToFirestore = async (newItem) => {
+  const addFavoriteToFirestore = async (newItem, idToAdd) => {
     const userFavoritesCollection = collection(
       db,
       "users",
       user.email,
       "favorites"
     );
-    try {
-      const docRef = await addDoc(userFavoritesCollection, newItem);
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    const querySnapshot = await getDocs(userFavoritesCollection);
+
+    // Belirli bir id'ye sahip belge var mı kontrol et
+    const hasDocumentWithId = querySnapshot.docs.some(
+      (doc) => doc.data().id === newItem.id
+    );
+    console.log("newITEM KONTROLÜ", hasDocumentWithId);
+    if (hasDocumentWithId) {
+      console.log("Ekelemek istediğiniz film zaten favorilerinizde var");
+    } else {
+      try {
+        const docRef = await addDoc(userFavoritesCollection, newItem);
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     }
   };
 
