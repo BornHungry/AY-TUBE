@@ -38,7 +38,9 @@ const FavoritesList = () => {
               />
             </div>
             <div>
-              <h2 className="film-name">{item.original_title}</h2>
+              <h2 className="film-name">
+                {item.original_title} {item.name}
+              </h2>
               <FontAwesomeIcon
                 style={{ color: "red" }}
                 onClick={() => {

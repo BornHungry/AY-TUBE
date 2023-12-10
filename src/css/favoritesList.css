@@ -7,6 +7,10 @@
 
 }
 
+.favorites {
+    width: 272px;
+}
+
 .favorites-ct {
     width: 100%;
     display: flex;

@@ -27,4 +27,6 @@
     font-weight: 400;
     font-size: 16px;
     cursor: pointer;
+    width: 90%;
+    word-wrap: break-word;
 }
