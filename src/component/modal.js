@@ -70,6 +70,8 @@ function Modal({ modalData, setModal }) {
                         <div class="mt-2 md:w-1/2 lg:w-1/2 sm:w-[100%]">
                           <h4 className="text-gray-700 font-semibold">
                             {modalData.title}
+                            {modalData.original_title}
+                            {modalData.original_name}
                           </h4>
                           <p class="text-sm text-gray-500">
                             {modalData.overview}
@@ -78,6 +80,7 @@ function Modal({ modalData, setModal }) {
                             <p>
                               <strong>Release Date: </strong>
                               {modalData.release_date}
+                              {modalData.first_air_date}
                             </p>
                             <p>
                               <strong>Score:{""} </strong>
