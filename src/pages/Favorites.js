@@ -8,7 +8,7 @@ const FavoritesPage = () => {
   return (
     <div>
       <Layouts login="login">
-        <h3>{user.email}'s Favorites </h3>
+        <h3>{user.displayName}'s Favorites </h3>
         <FavoritesList />
       </Layouts>
     </div>

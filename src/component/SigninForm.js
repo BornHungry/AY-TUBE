@@ -1,6 +1,6 @@
 import Button from "../buttons/button";
 import toast, { Toaster } from "react-hot-toast";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./FireBase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,11 @@ import { useContext } from "react";
 import { MyAuthContext } from "../component/context/ContextAuth";
 
 const SigninForm = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    fullName: "",
+  });
   const handlerChangeInput = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -24,10 +28,14 @@ const SigninForm = () => {
       const data = await createUserWithEmailAndPassword(
         auth,
         formData.email,
-        formData.password
+        formData.password,
+        formData.fullName
       );
       const user = data.user;
-      registerFunc(user);
+      const newData = updateProfile(auth.currentUser, {
+        displayName: formData.fullName,
+      });
+      registerFunc(newData);
       if (user) {
         const timeoutId = setTimeout(() => {
           navigate("/");
@@ -44,6 +52,15 @@ const SigninForm = () => {
     <div className="login-form">
       <Toaster />
       <form onSubmit={authFunc} className="login-form__container">
+        <input
+          name="fullName"
+          className="input-block"
+          onChange={handlerChangeInput}
+          value={formData.fullName}
+          type="text"
+          placeholder="Full Name"
+          required
+        />
         <input
           className="input-block"
           name="email"
